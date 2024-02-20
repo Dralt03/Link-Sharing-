@@ -18,11 +18,11 @@ export default function Home() {
     setLinks([
       ...links,
       {
-        id:"",
+        id:links.length+1,
         platform: "",
         link: "",
       },
-    ]);
+    ].filter((x) => x.id <= 3));
 
   }
 
