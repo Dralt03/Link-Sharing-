@@ -15,15 +15,17 @@ export default function Home() {
 
   function handleClick() {
     setshow(true);
-    setLinks([
-      ...links,
-      {
-        id:links.length+1,
-        platform: "",
-        link: "",
-      },
-    ].filter((x) => x.id <= 3));
+    if(links.length+1 <= 3){
+      setLinks([
+        ...links,
 
+        {
+          id: links.length+1,
+          platform: "",
+          link: "",
+        }
+      ])
+    }
   }
 
   return (
@@ -87,14 +89,14 @@ export default function Home() {
             </button>
           </div>
           {show ? (
-            links.map((i, platform, link) => (
+            links.map((item, index) => (
               <div>
                 <Link
-                  count={i}
-                  platform = {platform}
-                  link = {link}
+                  count={index+1}
+                  platform = {item.platform}
+                  links = {item.link}
                   setLinks = {setLinks}
-                  key={i}
+                  key={index+1}
                 />
               </div>
             ))

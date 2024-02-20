@@ -1,11 +1,11 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 
-function Link({count, link, setLinks, platform}) {
-
-    function updateLink(count, text){
-        setLinks(link.link)
+function Link({count, links, setLinks}) {
+    
+    function onRemove(){
+        console.log(links.id);
     }
 
     return(
@@ -14,7 +14,7 @@ function Link({count, link, setLinks, platform}) {
             <span className="flex justify-between">
                 <p className="font-semibold text-lg">Link #{count}</p>
                 <button onClick={()=>{
-                    setLinks(link.filter((e) => e.id != count));
+                    onRemove()
                 }}>Remove</button>
             </span>
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col pl-1 pt-5">
@@ -25,7 +25,7 @@ function Link({count, link, setLinks, platform}) {
                     <option>Linkdin</option>
                 </select>
                 <label>Link</label>
-                <input className="mt-4 border-2 border-slate-200  pt-2 pb-2 p-1.5" type="text" value={link.link} onChange={(e) => setLinks(e.target.value)}></input>
+                <input className="mt-4 border-2 border-slate-200  pt-2 pb-2 p-1.5" type="text" ></input>
             </form>
         </div>)
     )
