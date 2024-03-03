@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "./Link";
-import { useState, useContext } from "react";
+import { useState} from "react";
 import ScreenLink from "./ScreenLink";
 
 export default function Home() {
@@ -12,13 +12,15 @@ export default function Home() {
   //   platform:"",
   //   link:""
   // }
+  function OnRemove(count){
+    setLinks(links.filter((i) => i.id !== count))
+  }
 
-  function handleClick() {
+  const handleClick = () => {
     setshow(true);
-    if(links.length+1 <= 3){
+    if(links.length+1 <= 4){
       setLinks([
         ...links,
-
         {
           id: links.length+1,
           platform: "",
@@ -53,7 +55,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <div className="flex justify-around content-center mt-52">
+      <div className="flex justify-around content-center mt-52 w-screen">
         <div className="flex max-md:hidden">
           <Image
             className="absolute w-auto h-auto"
@@ -71,7 +73,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="funtional-part ml-32 mr-5 flex flex-wrap flex-col justify-between">
+        <div className="funtional-part md:ml-20 flex flex-wrap flex-col justify-between">
           <div>
             <h1 className="text-5xl flex font-bold font-sans">
               Customize Your Links
@@ -93,10 +95,8 @@ export default function Home() {
               <div>
                 <Link
                   count={index+1}
-                  platform = {item.platform}
-                  links = {item.link}
-                  setLinks = {setLinks}
-                  key={index+1}
+                  OnRemove={OnRemove}
+                  key={item.id}
                 />
               </div>
             ))

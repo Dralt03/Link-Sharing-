@@ -2,25 +2,23 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 
-function Link({count, links, setLinks}) {
-    
-    function onRemove(){
-        console.log(links.id);
-    }
+function Link({count, OnRemove}) {
 
+    
     return(
         (
         <div className="w-full mt-5 bg-gray-50 rounded-lg h-fit p-5">
             <span className="flex justify-between">
                 <p className="font-semibold text-lg">Link #{count}</p>
-                <button onClick={()=>{
-                    onRemove()
-                }}>Remove</button>
+                <button onClick={(count) => {OnRemove(count)}}>Remove</button>
             </span>
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col pl-1 pt-5">
                 <label>Platform</label>
                 <select className="mt-4 mb-4 border-slate-200 border-2 h-10">
                     <option>Github</option>
+                    <option>X</option>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
                     <option>Youtube</option>
                     <option>Linkdin</option>
                 </select>
