@@ -6,29 +6,45 @@ import ScreenLink from "./ScreenLink";
 
 export default function Home() {
   const [show, setshow] = useState(false);
-  const [links, setLinks] = useState([]);
+  const [links, setLinks] = useState([{
+    id: 1,
+    platform: "",
+    link: "",
+  }]);
 
   // {
   //   platform:"",
   //   link:""
   // }
-  function OnRemove(count){
-    setLinks(links.filter((i) => i.id !== count))
+  function OnRemove(id){
+    setLinks(links.filter((link) => link.id !== id))
   }
 
   const handleClick = () => {
     setshow(true);
-    if(links.length+1 <= 4){
+    if(links.length+1 <= 4 && links.length>=1){
       setLinks([
         ...links,
         {
-          id: links.length+1,
+          id: links[links.length-1].id+1,
           platform: "",
           link: "",
         }
       ])
+    } else {
+      setLinks([
+        {
+          id:1,
+          platform:"",
+          link:""
+        }
+      ])
     }
   }
+
+  // const updateLink(id){
+  //   setLinks()
+  // }
 
   return (
     <>
@@ -94,9 +110,9 @@ export default function Home() {
             links.map((item, index) => (
               <div>
                 <Link
-                  count={index+1}
+                  count={item.id}
                   OnRemove={OnRemove}
-                  key={item.id}
+                  key={index}
                 />
               </div>
             ))

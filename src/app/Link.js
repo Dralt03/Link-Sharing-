@@ -1,16 +1,12 @@
-'use client'
-import { useEffect, useState } from "react";
-import { useContext } from "react";
-
 function Link({count, OnRemove}) {
-
+    
     
     return(
         (
         <div className="w-full mt-5 bg-gray-50 rounded-lg h-fit p-5">
             <span className="flex justify-between">
                 <p className="font-semibold text-lg">Link #{count}</p>
-                <button onClick={(count) => {OnRemove(count)}}>Remove</button>
+                <button onClick={() => OnRemove(count)}>Remove</button>
             </span>
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col pl-1 pt-5">
                 <label>Platform</label>
